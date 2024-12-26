@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Button with Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+        }
+        .timer {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        #downloadButton {
+            font-size: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            display: none;  /* Initially hidden */
+            transition: background-color 0.3s;
+        }
+        #downloadButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="timer" class="timer">Your file Downloading<br>Time remaining: 10s</div>
+    <a id="downloadButton" href="https://www.example.com/file-to-download" download>Download File</a>
+</div>
+
+<script>
+    let countdownTime = 10; // Time in seconds
+    const timerElement = document.getElementById('timer');
+    const downloadButton = document.getElementById('downloadButton');
+
+    // Function to start the countdown
+    function startCountdown() {
+        const countdownInterval = setInterval(function() {
+            if (countdownTime <= 0) {
+                clearInterval(countdownInterval);
+                timerElement.innerHTML = "Time's up! Click to download.";
+                downloadButton.style.display = 'inline-block'; // Show the button
+            } else {
+                timerElement.innerHTML = `Time remaining: ${countdownTime}s`;
+            }
+            countdownTime--;
+        }, 1000);
+    }
+
+    // Start the countdown when the page loads
+    window.onload = function() {
+        startCountdown();
+    }
+</script>
+
+</body>
+</html>
