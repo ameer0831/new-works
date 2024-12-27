@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Search Filter</title>
+<style>body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  li {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    margin-bottom: 5px;
+  }
+  
+  li:hover {
+    background-color: #f1f1f1;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Real-Time Search Filter</h1>
+    <input type="text" id="searchInput" placeholder="Search for an item...">
+    <ul id="itemList">
+      <li>Apple</li>
+      <li>Banana</li>
+      <li>Cherry</li>
+      <li>Grape</li>
+      <li>Lemon</li>
+      <li>Orange</li>
+      <li>Pineapple</li>
+      <li>Watermelon</li>
+    </ul>
+  </div>
+
+  <script>// Function to filter the list items based on the search query
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      const items = document.querySelectorAll('#itemList li');
+    
+      items.forEach(function(item) {
+        const text = item.textContent.toLowerCase();
+        
+        // If the item matches the search query, display it; otherwise, hide it
+        if (text.includes(query)) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+    </script>
+</body>
+</html>
