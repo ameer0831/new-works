@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light/Dark Mode Toggle</title>
+    <style>/* Light Mode Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: #ffffff;
+            color: #333;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        
+        h1 {
+            color: inherit;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        
+        body.dark-mode button {
+            background-color: #333;
+            color: #fff;
+        }
+        
+        body.dark-mode button:hover {
+            background-color: #444;
+        }
+        </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Light/Dark Mode Switch</h1>
+        <p>Click the button to toggle between Light and Dark mode!</p>
+        <button id="mode-toggle">Switch to Dark Mode</button>
+    </div>
+
+    <script>// Get the button and the body element
+        const modeToggleButton = document.getElementById('mode-toggle');
+        const body = document.body;
+        
+        // Check if there's a saved theme in localStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            modeToggleButton.textContent = 'Switch to Light Mode';
+        } else {
+            body.classList.remove('dark-mode');
+            modeToggleButton.textContent = 'Switch to Dark Mode';
+        }
+        
+        // Toggle the theme when the button is clicked
+        modeToggleButton.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+        
+            // Save the theme preference to localStorage
+            if (body.classList.contains('dark-mode')) {
+                modeToggleButton.textContent = 'Switch to Light Mode';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                modeToggleButton.textContent = 'Switch to Dark Mode';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        </script>
+</body>
+</html>
